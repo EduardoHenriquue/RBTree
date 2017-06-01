@@ -253,20 +253,20 @@ public class RBElement {
     /**
      * Returns pointer to node containing a requested key.
      *
-     * @param i Key to look up
+     * @param z Key to look up
      * @return Node instance containing i, null if not found
      */
-    public RBElement search(String z) {
+    public RBElement rbSearch(String z) {
         if (isNil()) {
             return null;
         }
         else if (getKey().equals(z)) {
             return this;
         } else {
-            if (z.compareTo(getKey()) < -1 && hasLeftChild()) {
-                return getLeftChild().search(i);
+            if ((z.compareTo(getKey()) < 0) && hasLeftChild()) {
+                return getLeftChild().rbSearch(z);
             } else if (hasRightChild()) {
-                return getRightChild().search(i);
+                return getRightChild().rbSearch(z);
             }
         }
         return null;
@@ -276,11 +276,11 @@ public class RBElement {
      * Returns true iff the requested key is contained
      * in the node or its offsprings.
      *
-     * @param i Key to look up
+     * @param z Key to look up
      * @return True iff i is contained in node's tree
      */
-    public boolean contains(int i) {
-        return search(i) != null;
+    public boolean contains(String z) {
+        return rbSearch(z) != null;
     }
 
     /**
@@ -290,14 +290,14 @@ public class RBElement {
      * @return True if node inserted, False if key already existed.
      */
     public boolean insert(RBElement newNode) {
-        if (newNode.getKey() < getKey()) {
+        if (newNode.getKey().compareTo(getKey()) < 0) {
             if (hasLeftChild()) {
                 return getLeftChild().insert(newNode);
             } else {
                 setLeftChild(newNode);
                 return true;
             }
-        } else if (newNode.getKey() > getKey()) {
+        } else if (newNode.getKey().compareTo(getKey()) > 0) {
             if (hasRightChild()) {
                 return getRightChild().insert(newNode);
             } else {

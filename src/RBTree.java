@@ -77,9 +77,9 @@ public class RBTree {
      *
      * postcondition: returns true iff i is in the tree
      */
-    public boolean contains(int i) {
+    public boolean contains(String z) {
         if (!empty()) {
-            return root.contains(i);
+            return root.contains(z);
         } else {
             return false;
         }
@@ -101,21 +101,22 @@ public class RBTree {
          */
 
 
+
         if (empty()) {
             // first node in tree
             setRoot(z);
-            this.min = z.getKey();
-            this.max = z.getKey();
+//            this.min = z.getKey();
+//            this.max = z.getKey();
         } else {
             rbInsertFixup(z);
 
             // maintain min and max properties
-            if (this.min > z.getKey()) {
-                this.min = z.getKey();
-            }
-            if (this.max < z.getKey()) {
-                this.max = z.getKey();
-            }
+//            if (this.min > z.getKey()) {
+//                this.min = z.getKey();
+//            }
+//            if (this.max < z.getKey()) {
+//                this.max = z.getKey();
+//            }
         }
 
         // maintain size property
@@ -465,7 +466,7 @@ public class RBTree {
     /**
      * Returns a string representation of the tree.
      *
-     * @return String represntatino of the tree
+     * @return String representation of the tree
      */
     public String toString() {
         if (!empty()) {
@@ -537,19 +538,5 @@ public class RBTree {
         x.setParent(y);
     }
 
-    /**
-     * public class RBElement
-     *
-     * If you wish to implement classes other than RBTree
-     * (for example RBElement), do it in this file, not in
-     * another file
-     *
-     */
-
-
-    /**
-     * @original author Shai Vardi
-     * Modified for semester 2011/2012 a
-     */
-
+   
 }
