@@ -1,62 +1,39 @@
-import java.util.Random;
-
 /**
  * Created by eduardohenrique on 30/05/17.
  */
 public class Main {
 
-        private static boolean contains(int[] ar, int x) {
-            for (int y : ar) {
-                if (y == x) {
-                    return true;
-                }
-            }
-            return false;
-        }
+    public static void main(String[] args) {
 
-        private static int[] generateRandomSet(int count) {
-            int[] ar = new int[count];
-            int x;
-            Random rnd = new Random();
-
-            for (int i=0; i<count; i++) {
-                x = rnd.nextInt(count*30)+1;
-
-                while (contains(ar, x)) {
-                    x = rnd.nextInt(count*30)+1;
-                }
-
-                ar[i] = x;;
-            }
-
-            return ar;
-        }
-
-        /**
-         * @param args
-         */
-        public static void main(String[] args) {
-
-            for (int count=1; count<=15; count++){
-
-                int[] numbers = generateRandomSet(count);
-                RBTree tree = new RBTree();
-
-                for(int i = 0; i < numbers.length; i++) {
-                    tree.rbInsert(numbers[i]);
-                }
-
-                System.out.println("Results for size " + count);
-                System.out.println("size:" + tree.size());
-                System.out.println("max depth: " + tree.maxDepth());
-                System.out.println("min depth: " + tree.minLeafDepth());
-                System.out.println("max depth / min le]af depth: " + (float)((float)tree.maxDepth()/(float)tree.minLeafDepth()));
-                System.out.println(tree.toString());
-            }
-        }
-
-
-
-
+//        RBTree rbTree = new RBTree();
+//        RBOperations rbOperations = new RBOperations(rbTree);
+//        RBElement element = new RBElement("fortuito");
+//        RBElement element1 = new RBElement("esperança");
+//        RBElement element2 = new RBElement("malária");
+//        RBElement element3 = new RBElement("doido");
+//        RBElement element4 = new RBElement("facão");
+//        RBElement element5 = new RBElement("drone");
+//        RBElement element6 = new RBElement("cavalo");
+//
+//        try {
+//            System.out.println("========== Inserting into Tree ============");
+//            rbOperations.rbInsert(rbTree.getRoot(), element);
+//            rbOperations.rbInsert(rbTree.getRoot(), element1);
+//            rbOperations.rbInsert(rbTree.getRoot(), element2);
+//            rbOperations.rbInsert(rbTree.getRoot(), element3);
+//            rbOperations.rbInsert(rbTree.getRoot(), element4);
+//            rbOperations.rbInsert(rbTree.getRoot(), element5);
+//            rbOperations.rbInsert(rbTree.getRoot(), element6);
+//
+//            System.out.println("========== RB-PRINT ============");
+//            rbOperations.rbPrint(rbTree.getRoot());
+//            System.out.println("========== RB-Check ============");
+//            rbOperations.rbCheck(rbTree.getRoot());
+//
+//        } catch (ElementExistingException e) {
+//            System.out.println(e.getMessage());
+//        }
+    }
 
 }
+
