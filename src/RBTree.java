@@ -8,7 +8,8 @@ public class RBTree {
     /**
      * Sentinel
      */
-    static final String NIL = "NIL";
+    static final String NIL = null;
+    static final RBElement T_NIL = new RBElement(NIL, true);
 
     /**
      * Pointer to root node
@@ -19,7 +20,8 @@ public class RBTree {
      * Creates a new, empty instance
      */
     public RBTree() {
-        this.root = new RBElement(RBTree.NIL, true);
+        this.root = new RBElement(NIL, true);
+        this.root.setParent(T_NIL);
     }
 
     /**
@@ -33,7 +35,15 @@ public class RBTree {
      * Sets root node
      */
     public void setRoot(RBElement root) {
-        this.root = root;
+        if (this.root.isNil()) {
+            this.root = root;
+            root.setLeftChild(new RBElement());
+            root.setRightChild(new RBElement());
+
+        } else {
+            this.root.setKey(root.getKey());
+        }
+
     }
 
     /**

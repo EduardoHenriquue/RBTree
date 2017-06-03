@@ -26,11 +26,12 @@ public class RBOperations {
     public void rbPrint(RBElement root){
         String elements = "";
         if(!root.isNil()){
-            rbPrint(root.getLeftChild());
             elements += root.getKey()+" ";
+            System.out.println(elements);
+            rbPrint(root.getLeftChild());
             rbPrint(root.getRightChild());
         }
-        System.out.println(elements);
+
     }
 
     /**
@@ -44,18 +45,18 @@ public class RBOperations {
 
         if(!root.isNil()){
             nodesInfo += "("
-                    + (root.hasGrandParent() ? root.getParent().getKey() : "NIL") +", "
+                    + (root.getParent() != null ? root.getParent().getKey() : "NIL") +", "
                     + root.getKey() + ", "
-                    + (root.isBlack() ? "Black" : "Red") + ", "
+                    + (root.isBlack() ? "preto" : "vermelho") + ", "
                     + blackHeight(root) + ", "
                     + (root.hasLeftChild() ? root.getLeftChild().getKey() : "NIL") +", "
                     + (root.hasRightChild() ? root.getRightChild().getKey() : "NIL")
-                    + ")\n\n";
-
+                    + ")\n";
+            System.out.println(nodesInfo);
             rbCheck(root.getLeftChild());
             rbCheck(root.getRightChild());
         }
-        System.out.println(nodesInfo);
+//        System.out.println(nodesInfo);
     }
 
 
@@ -115,10 +116,15 @@ public class RBOperations {
             rbInsertFixup(root, z); // Call rbInsertFixup()
 
         } else {
-            root.setKey(z.getKey());
+            setNewRoot(z);
         }
     }
 
+    /**
+     *
+     * @param root
+     * @param z
+     */
     public void rbInsertFixup(RBElement root, RBElement z){
         RBElement y;
 

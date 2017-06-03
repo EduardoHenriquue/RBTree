@@ -32,10 +32,6 @@ public class RBElement {
      */
     public RBElement(String key) {
         this(key, true);
-        if (!isNil()) {
-            setLeftChild(new RBElement());
-            setRightChild(new RBElement());
-        }
     }
 
     /**
@@ -47,7 +43,7 @@ public class RBElement {
 
 
     public boolean isNil() {
-        return this.key.equals(RBTree.NIL);
+        return this.key == null;
     }
 
     public String getKey() {
@@ -72,7 +68,7 @@ public class RBElement {
     public void setLeftChild(RBElement leftChild) {
         this.leftChild = leftChild;
 
-        if (hasLeftChild()) {
+        if (this.hasLeftChild()) {
             leftChild.setParent(this);
         }
     }
@@ -89,7 +85,7 @@ public class RBElement {
     public void setRightChild(RBElement rightChild) {
         this.rightChild = rightChild;
 
-        if (hasRightChild()) {
+        if (this.hasRightChild()) {
             rightChild.setParent(this);
         }
     }
@@ -102,7 +98,7 @@ public class RBElement {
      * @return True iff node is a leaf
      */
     public boolean isLeaf() {
-        return !hasLeftChild() && !hasRightChild();
+        return !this.hasLeftChild() && !this.hasRightChild();
     }
 
     /**
@@ -112,7 +108,7 @@ public class RBElement {
      * @return True iff node has a left child
      */
     public boolean hasLeftChild() {
-        return !leftChild.isNil();
+        return !this.leftChild.isNil();
     }
 
     /**
@@ -122,7 +118,7 @@ public class RBElement {
      * @return True iff node has a right child
      */
     public boolean hasRightChild() {
-        return !rightChild.isNil();
+        return !this.rightChild.isNil();
     }
 
 
@@ -132,7 +128,7 @@ public class RBElement {
      * @return Pointer to parent node
      */
     public RBElement getParent() {
-        return this.parent;
+        return this.parent == null ? RBTree.T_NIL : this.parent;
     }
 
     /**
@@ -162,7 +158,7 @@ public class RBElement {
      * @return Pointer to parent of parent node
      */
     public RBElement getGrandParent() {
-        return getParent().getParent();
+        return this.getParent().getParent();
     }
 
     /**
@@ -171,7 +167,7 @@ public class RBElement {
      * @return True if node has a parent node that has a parent node
      */
     public boolean hasGrandParent() {
-        return hasParent() && getParent().hasParent();
+        return this.hasParent() && this.getParent().hasParent();
     }
 
 
